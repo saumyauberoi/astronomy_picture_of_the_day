@@ -9,7 +9,7 @@ def fetch_apod_data(api_key):
     if response.status_code==200:
         return response.json()
     else:
-        print(f"Error {response.status_code}: Unable to fetch APOD data.")
+        print(f"error {response.status_code}: Unable to fetch apod data.")
         return None
 def download_image(image_url,save_path):
     urlretrieve(image_url,save_path)
@@ -20,16 +20,16 @@ def main():
         image_url=apod_data['url']
         image_title=apod_data['title']
         date_str=apod_data['date']
-        save_dir='NASA_APOD_Images'
+        save_dir='nasa_apod_images'
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
         filename=f'{date_str}_{image_title.replace(" ", "_")}.jpg'
         save_path=os.path.join(save_dir, filename)
         download_image(image_url, save_path)
         abs_path=os.path.abspath(save_path)
-        print(f"Image downloaded successfully: {abs_path}")
+        print(f"image downloaded successfully: {abs_path}")
     else:
-        print("Image download failed.")
+        print("image download failed.")
 if __name__=="__main__":
     main()
 
